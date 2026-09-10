@@ -4,8 +4,7 @@ Genome assembly refers to the process of putting back together the nucleotide se
 of the original chromosome from which the sequences originated. The goal of genome assembly tools is to create long contiguous pieces of sequence 
 (contigs) from short or long reads. The contigs are then ordered and oriented in relation to one another to form scaffolds.
 
-Here we will start with pre-trimmed reads and assemble them  using three assembly tools [hifiasm](https://github.com/chhylp123/hifiasm), 
-[canu](https://canu.readthedocs.io/en/latest/tutorial.html) and [flye](https://github.com/mikolmogorov/Flye)  
+Here we will start with pre-trimmed reads and assemble them  using three assembly tools [hifiasm](https://github.com/chhylp123/hifiasm) and [flye](https://github.com/mikolmogorov/Flye)  
 
 If you are not logged into the HPC, please log in.  
 
@@ -57,15 +56,6 @@ awk '/^S/{print ">"$2;print $3}' aspn.bp.p_ctg.gfa > aspn.p.fa
 
 Discuss the output files
 
-**Running canu**  
-```
-module load canu/1.8 
-
-canu -d canu/ -p aspnCanu -pacbio-corrected reducedPB_clean.fastq genomeSize=34m -useGrid=false -merylThreads=2 -merylMemory=8 corOverlapper=ovl
-
-```
-
-Discuss the output files
 
 **Running flye**
 ```
@@ -87,8 +77,7 @@ module purge
 
 module load quast/4.5
 
-quast.py /home/${USER}/genome-assembly/flye/assembly.fasta  /home/${USER}/genome-assembly/canu/aspnCanu.contigs.fasta 
-/home/${USER}/genome-assembly/aspn.p.fa -o quast-output/
+quast.py /home/${USER}/genome-assembly/flye/assembly.fasta /home/${USER}/genome-assembly/aspn.p.fa -o quast-output/
 ```
 
 Download and discuss the report 
@@ -100,7 +89,7 @@ We will now assess the completeness of the best assembly from our previous compa
 Run busco
 
 ```
-apptainer run busco-v6.1.0.sif busco -m genome -i /home/${USER}/genome-assembly/canu/aspnCanu.contigs.fasta -o  canuBusco --metaeuk -l eudicots_odb10 -c 2
+apptainer run busco-v6.1.0.sif busco -m genome -i /home/${USER}/genome-assembly/flye/assembly.fasta -o  canuBusco --metaeuk -l eudicots_odb10 -c 2
 
 ```
 
