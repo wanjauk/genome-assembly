@@ -25,6 +25,8 @@ Create a symbolic link for the input data and a slurm script.
 ln -s  /var/scratch/global/aspergillus/SRR31719412_subset_5k.fastq reducedPB_clean.fastq
 
 ln -s /var/scratch/global/slurm/assemble-genome.sh .
+
+ln -s /var/scratch/global/busco/busco-v6.1.0.sif .
 ```
 
 We will run a job that will be orchestrated by slurm on the compute nodes. The job constists of the steps that take relatively long time to complete.
@@ -93,11 +95,8 @@ We will now assess the completeness of the best assembly from our previous compa
 Run busco
 
 ```
-module purge
+apptainer run busco-v6.1.0.sif busco -m genome -i /home/${USER}/genome-assembly/canu/aspnCanu.contigs.fasta -o  canuBusco --metaeuk -l eudicots_odb10 -c 2
 
-module load BUSCO/6.1.0
-
-busco -m genome -i /home/${USER}/genome-assembly/canu/aspnCanu.contigs.fasta -o  canuBusco --metaeuk -l eudicots_odb10 -c 2
 ```
 
 Explore the summary report.
