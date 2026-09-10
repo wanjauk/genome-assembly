@@ -8,13 +8,13 @@ module load canu/1.8
 module load flye/2.9.6  
 
 # Run hifiasm
-hifiasm -o ecoli -t 2 reducedPB_clean.fastq --primary
+hifiasm -o aspn -t 2 reducedPB_clean.fastq --primary
 
 # Convert gfa to fasta
-awk '/^S/{print ">"$2;print $3}' ecoli.p_ctg.gfa > ecoli.p.fa
+awk '/^S/{print ">"$2;print $3}' aspn.p_ctg.gfa > aspn.p.fa
 
 # Run canu
-canu -d canu/ -p ecoliCanu -pacbio-corrected reducedPB_clean.fastq genomeSize=4m -useGrid=false -merylThreads=2 -merylMemory=8 corOverlapper=ovl
+canu -d canu/ -p aspnCanu -pacbio-corrected reducedPB_clean.fastq genomeSize=4m -useGrid=false -merylThreads=2 -merylMemory=8 corOverlapper=ovl
 
 # Run flye
 flye --pacbio-corr reducedPB_clean.fastq -o flye/ --threads 2

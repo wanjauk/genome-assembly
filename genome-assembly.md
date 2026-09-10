@@ -38,7 +38,7 @@ sbatch assemble-genome.sh
 ```
 module load hifiasm/0.16.1
 
-hifiasm -o ecoli -t 2 reducedPB_clean.fastq --primary
+hifiasm -o aspn -t 2 reducedPB_clean.fastq --primary
 ```
 
 
@@ -46,7 +46,7 @@ Convert gfa to fasta
 
 
 ```
-awk '/^S/{print ">"$2;print $3}' ecoli.p_ctg.gfa > ecoli.p.fa
+awk '/^S/{print ">"$2;print $3}' aspn.p_ctg.gfa > aspn.p.fa
 ```
 
 Discuss the output files
@@ -56,7 +56,7 @@ Discuss the output files
 ```
 module load canu/1.8 
 
-canu -d canu/ -p ecoliCanu -pacbio-corrected reducedPB_clean.fastq genomeSize=4m -useGrid=false -merylThreads=2 -merylMemory=8 corOverlapper=ovl
+canu -d canu/ -p aspnCanu -pacbio-corrected reducedPB_clean.fastq genomeSize=4m -useGrid=false -merylThreads=2 -merylMemory=8 corOverlapper=ovl
 
 ```
 
@@ -83,8 +83,8 @@ module purge
 
 module load quast/4.5
 
-quast.py /home/${USER}/genome-assembly/flye/assembly.fasta  /home/${USER}/genome-assembly/canu/ecoliCanu.contigs.fasta 
-/home/${USER}/genome-assembly/ecoli.p.fa -o quast-output/
+quast.py /home/${USER}/genome-assembly/flye/assembly.fasta  /home/${USER}/genome-assembly/canu/aspnCanu.contigs.fasta 
+/home/${USER}/genome-assembly/aspn.p.fa -o quast-output/
 ```
 
 Download and discuss the report 
@@ -100,7 +100,7 @@ module purge
 
 module load BUSCO/5.2.2
 
-busco -m genome -i /home/${USER}/genome-assembly/canu/ecoliCanu.contigs.fasta -o  canuBusco --metaeuk -l eudicots_odb10 -c 2
+busco -m genome -i /home/${USER}/genome-assembly/canu/aspnCanu.contigs.fasta -o  canuBusco --metaeuk -l eudicots_odb10 -c 2
 ```
 
 Explore the summary report.
