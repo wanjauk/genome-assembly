@@ -22,7 +22,7 @@ cd genome-assembly
 Create a symbolic link for the input data and a slurm script.
 
 ```
-ln -s /var/scratch/global/vacs/pacbio/reducedPB_clean.fastq .
+ln -s  /var/scratch/global/aspergillus/SRR31719412_subset_100k.fastq reducedPB_clean.fastq
 
 ln -s /var/scratch/global/slurm/assemble-genome.sh .
 ```
@@ -34,7 +34,6 @@ sbatch assemble-genome.sh
 ```  
 
 **Running hifiasm**  
-- This will take about 8 minutes on 2 cores
 ```
 module load hifiasm/0.16.1
 
@@ -52,7 +51,6 @@ awk '/^S/{print ">"$2;print $3}' aspn.p_ctg.gfa > aspn.p.fa
 Discuss the output files
 
 **Running canu**  
-- This will take about 22 minutes on 2 cores
 ```
 module load canu/1.8 
 
@@ -63,7 +61,6 @@ canu -d canu/ -p aspnCanu -pacbio-corrected reducedPB_clean.fastq genomeSize=4m 
 Discuss the output files
 
 **Running flye**
-- This will take about 12 minutes on 2 cores
 ```
 module load flye/2.9.6 
 
@@ -98,7 +95,7 @@ Run busco
 ```
 module purge
 
-module load BUSCO/5.2.2
+module load BUSCO/6.1.0
 
 busco -m genome -i /home/${USER}/genome-assembly/canu/aspnCanu.contigs.fasta -o  canuBusco --metaeuk -l eudicots_odb10 -c 2
 ```
