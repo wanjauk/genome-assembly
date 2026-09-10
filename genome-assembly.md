@@ -19,6 +19,11 @@ mkdir genome-assembly
 cd genome-assembly
 ```
 
+Enter into an interactive session
+```
+interactive -c 2
+```
+
 Create a symbolic link for the input data and a slurm script.
 
 ```
@@ -32,7 +37,7 @@ ln -s /var/scratch/global/busco/busco-v6.1.0.sif .
 We will run a job that will be orchestrated by slurm on the compute nodes. The job constists of the steps that take relatively long time to complete.
 
 ```
-sbatch assemble-genome.sh
+#sbatch assemble-genome.sh
 ```  
 
 **Running hifiasm**  
