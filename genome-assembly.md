@@ -9,6 +9,8 @@ Here we will start with pre-trimmed reads and assemble them  using three assembl
 
 If you are not logged into the HPC, please log in.  
 
+**Setting up**
+
 In your home directory, create a directory called `genome-assembly` and change directory to `genome-assembly`
 
 ```
@@ -17,7 +19,19 @@ mkdir genome-assembly
 cd genome-assembly
 ```
 
+Create a symbolic link for the input data and a slurm script.
 
+```
+ln -s /var/scratch/global/vacs/pacbio/reducedPB_clean.fastq .
+
+ln -s /var/scratch/global/slurm/assemble-genome.sh .
+```
+
+We will run a job that will be orchestrated by slurm on the compute nodes. The job constists of the steps that take relatively long time to complete.
+
+```
+sbatch assemble-genome.sh
+```  
 
 **Running hifiasm**  
 - This will take about 8 minutes on 2 cores
