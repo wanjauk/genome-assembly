@@ -89,6 +89,8 @@ We will now assess the completeness of the best assembly from our previous compa
 Run busco
 
 ```
+module purge
+
 apptainer run busco-v6.1.0.sif busco -m genome -i /home/${USER}/genome-assembly/flye/assembly.fasta -o  canuBusco --metaeuk -l eudicots_odb10 -c 2
 
 ```
