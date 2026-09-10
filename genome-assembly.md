@@ -52,7 +52,7 @@ Convert gfa to fasta
 
 
 ```
-awk '/^S/{print ">"$2;print $3}' aspn.p_ctg.gfa > aspn.p.fa
+awk '/^S/{print ">"$2;print $3}' aspn.bp.p_ctg.gfa > aspn.p.fa
 ```
 
 Discuss the output files
