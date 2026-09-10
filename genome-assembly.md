@@ -91,7 +91,7 @@ Run busco
 ```
 module purge
 
-apptainer run busco-v6.1.0.sif busco -m genome -i /home/${USER}/genome-assembly/flye/assembly.fasta -o  canuBusco --metaeuk -l eudicots_odb10 -c 2
+apptainer run busco-v6.1.0.sif busco -m genome -i /home/${USER}/genome-assembly/flye/assembly.fasta -o  flyeBusco --metaeuk -l eurotiales_odb10 -c 2
 
 ```
 
