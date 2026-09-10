@@ -39,7 +39,7 @@ sbatch assemble-genome.sh
 ```
 module load hifiasm/0.16.1
 
-hifiasm -o aspn -t 2 reducedPB_clean.fastq --primary
+hifiasm -o aspn -t 2 reducedPB_clean.fastq
 ```
 
 
@@ -56,7 +56,7 @@ Discuss the output files
 ```
 module load canu/1.8 
 
-canu -d canu/ -p aspnCanu -pacbio-corrected reducedPB_clean.fastq genomeSize=4m -useGrid=false -merylThreads=2 -merylMemory=8 corOverlapper=ovl
+canu -d canu/ -p aspnCanu -pacbio-corrected reducedPB_clean.fastq genomeSize=34m -useGrid=false -merylThreads=2 -merylMemory=8 corOverlapper=ovl
 
 ```
 
