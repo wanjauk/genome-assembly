@@ -22,7 +22,7 @@ cd genome-assembly
 Create a symbolic link for the input data and a slurm script.
 
 ```
-ln -s  /var/scratch/global/aspergillus/SRR31719412_subset_100k.fastq reducedPB_clean.fastq
+ln -s  /var/scratch/global/aspergillus/SRR31719412_subset_5k.fastq reducedPB_clean.fastq
 
 ln -s /var/scratch/global/slurm/assemble-genome.sh .
 ```
